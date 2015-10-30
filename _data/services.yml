@@ -1,0 +1,4 @@
+- menu_name: "Contact"
+- name: "Contact"
+  url: "/info/"
+  title: "Contact"

@@ -1,0 +1,27 @@
+- title: HOME
+  url: "/"
+  side: left
+
+- title: "BIBLE STUDY"
+  url: "/bible-topics/"
+  side: left
+  dropdown:
+  - title: "Parables"
+    url: "/bible-topics/parables/"
+  - title: "Meditations"
+    url: "/bible-topics/meditations/"
+  - title: "Galatians"
+    url: "/bible-topics/book-of-galatians/"
+  - title: "Romans"
+    url: "/bible-topics/book-of-romans/"
+
+- title: Blog
+  url: "/blog/"
+  side: left
+  dropdown:
+  - title: "Blog Archive"
+    url: "/blog/archive/"
+
+- title: "About"
+  url: "/info/"
+  side: left

@@ -1,0 +1,100 @@
+---
+layout: default
+format: blog-index
+---
+<div id="header-home">
+    <div class="row">
+        <div class="small-12 columns">
+        </div><!-- /.medium-4.columns -->
+    </div><!-- /.row -->
+</div><!-- /#header-home -->
+
+
+{% comment %}
+*
+* First check, if widget is empty or not by checking if there is a title
+*
+{% endcomment %}
+<div class="row t30">
+	<div class="medium-12 columns t30">
+		<h2 class="font-size-h3 t10">The Bible: It's all about Jesus...</h2>
+		<p>Most religious institutions are about things people do, or should do, or even more overwhelmingly about things they shouldn't do. The focus is on people. That's why God's business is big business. Many products are created to supposedly bring the believers closer to God. From books, to music, seminars, conferences, training, you name it. The abundance of these things, and the pursuit after them, say one thing: Jesus saved you, but now it's your turn to take it all the way. You've heard about Jesus at an evangelistic meeting, now we, the churches of Jesus Christ, will tell you about yourselves.  The focus is now on you.</p>
+		<p>But the true church of Christ is never meant to be like this. It sets people free to live the lives God planned for them. Its sole purpose is to help folks fix their eyes on Jesus, not on themselves, to fully realize that Jesus died on the cross for them once and never again, that they were made whole to face God without shame, with heads lifted high, and hear the gentle whisper of the Spirit of God that "now there is no condemnation to those who are in Christ Jesus." (Romans 8:1)</p>
+	</div>
+</div>
+<div class="row t30">
+	{% if page.widget1.title %}
+		{% include frontpage-widget widget=page.widget1 %}
+	{% endif %}
+
+
+	{% if page.widget2.title %}
+		{% include frontpage-widget widget=page.widget2 %}
+	{% endif %}
+
+
+	{% if page.widget3.title %}
+		{% include frontpage-widget widget=page.widget3 %}
+	{% endif %}
+</div><!-- /.row -->
+
+
+{% comment %}
+*
+* First check, if there are any posts at all
+*
+{% endcomment %}
+
+{% unless site.posts == empty %}
+    <div class="row t30 b20 homepage">
+        <div class="small-12 columns">
+	    <hr>
+            {% for post in site.posts limit:1 %} {% if post.categories contains 'events' %}
+            {% if post.image.homepage %}
+            <p>
+                <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" title="{{ post.title escape_once }}"><img width="970" src="{{ site.urlimg }}{{ post.image.homepage }}" alt="{{ page.title escape_once }}"></a>
+            </p>
+
+            {% if post.image.caption_url && post.image.caption %}
+            <p class="text-right caption">
+                <a href="{{ post.image.caption_url }}">{{ post.image.caption }}</a>
+            </p>
+            {% endif %}
+            {% else post.image.homepage == NULL %}
+            <h2>{{ site.data.language.new_blog_entries }}</h2>
+            {% endif %}
+            {% endif %} {% endfor %}
+        </div><!-- /.small-12.columns -->
+    </div><!-- /.row -->
+
+
+    <div class="row">
+        <div class="medium-6 columns">
+            {% for post in site.posts limit:2 %} {% if post.categories contains 'events' %}
+            {% if post.subheadline %}<p class="subheadline">{{ post.subheadline }}</p>{% endif %}
+            <h2><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+            <p>
+                {% if post.meta_description %}{{ post.meta_description | strip_html | escape }}{% else post.teaser %}{{ post.teaser | strip_html | escape }}{% endif %}
+                <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" title="Read {{ post.title escape_once }}"><strong>{{ site.data.language.read_more }}</strong></a>
+            </p>
+            {% endif %} {% endfor %}
+        </div><!-- /.medium-5.columns -->
+
+
+        <div class="medium-6 columns">
+            <p><strong>{{ site.data.language.more_articles }}</strong></p>
+            {% include list-posts entries='20' offset='1' %}
+        </div><!-- /.medium-7.columns -->
+    </div><!-- /.row -->
+{% endunless %}
+
+
+{% comment %}
+*
+* Finally, if there is content, spit it out.
+*
+{% endcomment %}
+
+<div class="row">
+    {{ content }}
+</div><!-- /.row -->
